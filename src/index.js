@@ -1,15 +1,11 @@
 const express = require('express');
 const app = express()
-const page = require(__dirname+'/pages/page')
-const d = require(__dirname+'/db/data')
+const homeRouter = require('./routes/home.router')
 
 //set public folder
 app.use(express.static('public'))
 
 
-app.get('/home',function(req,res){
-	let data = d;
-	res.send(page.index(data));
-});
+app.use('/',homeRouter);
 
 app.listen(process.env.port || 3000);
